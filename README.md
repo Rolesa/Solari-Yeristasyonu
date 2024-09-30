@@ -42,6 +42,7 @@ conda env create -f environment.yml
 # 💫 About Me:
 🔭 I’m currently working on control automation software development.<br>
 💬 Ask me about Pixhawk, Python, PyQt, and embedded software.
+I am a first-year student in Electrical and Electronics Engineering at 19 Mayıs University.
 
 ## 🌐 Socials:
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/tunahangenc_c) 
