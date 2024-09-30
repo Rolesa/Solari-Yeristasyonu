@@ -1,11 +1,10 @@
-###################################################
-# veri seti egitmeye bak
-# burdaki ana_serverdaki servirin ana guiyi bloklamayacağındn emin oll
-# diğer thredlerde gui olurda blolanırsa nasıl bir sorun çıkacağını kontrol et
-# kamera görüntüsünü iyice test et oluşabilceck sorunları tespit et - gecikme olursa bitki konumuunu geride almma gibi
-# 1.sırada bitki olmadığını 2.sırada engel olmadığını göz önüne al
-# kompas ve gps e kesin çözüm bulun
-##################################################
+#####################################################
+# Coded by Rolesa
+# https://github.com/Rolesa/
+# instagram.com/tunahangenc_c
+#####################################################
+
+
 
 
 import sys
