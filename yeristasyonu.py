@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'sonhaliHYJHPs.ui'
+## Form generated from reading UI file 'sonhaliexccMs.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.2
 ##
@@ -25,7 +25,6 @@ import istasyon_icon_rc
 import istasyon_icon_rc
 import istasyon_icon_rc
 import istasyon_icon_rc
-import istasyon_icon_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -33,8 +32,7 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1091, 741)
         MainWindow.setMinimumSize(QSize(1066, 719))
-        MainWindow.setStyleSheet(u"\n"
-"#ust_baslik_widget{\n"
+        MainWindow.setStyleSheet(u"#ust_baslik_widget{\n"
 "	\n"
 "	background-color: rgb(222, 222, 222);\n"
 "}\n"
@@ -455,6 +453,12 @@ class Ui_MainWindow(object):
         self.capa_test_down = QPushButton(self.frame_11)
         self.capa_test_down.setObjectName(u"capa_test_down")
         self.capa_test_down.setGeometry(QRect(110, 60, 75, 24))
+        self.reconnect_btn = QPushButton(self.frame_11)
+        self.reconnect_btn.setObjectName(u"reconnect_btn")
+        self.reconnect_btn.setGeometry(QRect(20, 40, 75, 24))
+        self.disconnect_btn = QPushButton(self.frame_11)
+        self.disconnect_btn.setObjectName(u"disconnect_btn")
+        self.disconnect_btn.setGeometry(QRect(110, 40, 75, 24))
 
         self.gridLayout_5.addWidget(self.frame_11, 8, 1, 1, 1)
 
@@ -480,7 +484,7 @@ class Ui_MainWindow(object):
         self.lineEdit.setGeometry(QRect(30, 190, 113, 22))
         self.label_11 = QLabel(self.frame_20)
         self.label_11.setObjectName(u"label_11")
-        self.label_11.setGeometry(QRect(40, 160, 111, 16))
+        self.label_11.setGeometry(QRect(40, 160, 91, 16))
 
         self.verticalLayout_13.addWidget(self.frame_20)
 
@@ -1056,10 +1060,12 @@ class Ui_MainWindow(object):
         self.mavlink_lineedit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"com6", None))
         self.mavlink_button.setText(QCoreApplication.translate("MainWindow", u"Connect", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Disconnect", None))
-        self.capa_test_up.setText(QCoreApplication.translate("MainWindow", u"\u00c7apa kald\u0131r", None))
-        self.capa_test_down.setText(QCoreApplication.translate("MainWindow", u"\u00c7apa indir", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Continue", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Set current waypoint", None))
+        self.capa_test_up.setText(QCoreApplication.translate("MainWindow", u"kalk", None))
+        self.capa_test_down.setText(QCoreApplication.translate("MainWindow", u"in", None))
+        self.reconnect_btn.setText(QCoreApplication.translate("MainWindow", u"reconnect", None))
+        self.disconnect_btn.setText(QCoreApplication.translate("MainWindow", u"diconnect", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"resume", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"resume at wp", None))
         self.loadlcell_label.setText(QCoreApplication.translate("MainWindow", u"Loadcell_raw:", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"N/A", None))
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"N/A", None))
