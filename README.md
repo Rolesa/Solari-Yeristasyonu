@@ -2,7 +2,7 @@
 
 **Solari TIKA GCS** is a GUI for using TEKNOFEST TIKA, developed by Rolesa.
 
-[I would like to thank mdsaglam](https://github.com/mdsaglam) for their support and contributions during the development process.
+I would like to thank [mdsaglam](https://github.com/mdsaglam) for their support and contributions during the development process.
 ---
 
 **WARNING:** Due to optimization issues, it is recommended to use V1.0 in Windows light mode. It is anticipated that this issue will be resolved in future versions.
