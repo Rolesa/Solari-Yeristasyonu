@@ -12,9 +12,9 @@ The **SOLARI** ground station works together with the Raspberry Pi, STM32, and P
 
 - **Get GPS:** Used to retrieve the current GPS location of the vehicle.
 - **Send Waypoints Button:** Used to save the GPS locations obtained from the manual coordinate entry section or from the Get GPS button as waypoints.
-- **Waypoints for Anchor Lift:** This section is used to lift the anchor controlled by the STM positioned on the vehicle at the specified waypoints.
-- **Waypoints for Anchor Drop:** This section is used to drop the anchor controlled by the STM positioned on the vehicle at the specified waypoints.
-- **Send Mission:** Assigns the task of lifting and dropping the anchor at the specified waypoints.
+- **Waypoints for Hoe Lift:** This section is used to lift the hoe controlled by the STM positioned on the vehicle at the specified waypoints.
+- **Waypoints for Hoe Drop:** This section is used to drop the hoe controlled by the STM positioned on the vehicle at the specified waypoints.
+- **Send Mission:** Assigns the task of lifting and dropping the hoe at the specified waypoints.
 
 ## Camera:
 
@@ -28,7 +28,7 @@ The **SOLARI** ground station works together with the Raspberry Pi, STM32, and P
 - **Tasks-Status Information (Loadcell data, Connection status):** Some are undefined.
 - **Mavlink:** Specifies which port will be used for the MAVLink connection with Pixhawk.
 - **Connect Button:** Initiates the MAVLink connection from the specified port.
-- **Anchor Lift-Drop:** Added to test the movement of the anchor positioned on the vehicle. Used for the manual up-down movement of the anchor.
+- **Hoe Lift-Drop:** Added to test the movement of the hoe positioned on the vehicle. Used for the manual up-down movement of the hoe.
 - **Start-HOLD-MANUAL-FORCE_ARM-DISARM Buttons:** Used to switch the vehicle between AUTO-HOLD-MANUAL modes and to arm and disarm.
 
 ---
