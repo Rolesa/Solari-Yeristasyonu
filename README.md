@@ -18,12 +18,12 @@ The **SOLARI** ground station works together with the Raspberry Pi, STM32, and P
 
 ## Camera:
 
-- **Start:** Begins receiving and processing images from the IP address where the stream is being broadcast.
-- **Stop-Close (Performs the same function):** Stops receiving and processing the stream.
-- **Last Location:** Displays the approximate GPS location produced by estimating the position of the detected object (the plant) at a specified distance from the vehicle.
-- **Detection Count:** Non-functional.
+- **Start(Baslat):** Begins receiving and processing images from the IP address where the stream is being broadcast.
+- **Stop-Close(Durdur-Kapat) (Performs the same function):** Stops receiving and processing the stream.
+- **Last Location(Son konum):** Displays the approximate GPS location produced by estimating the position of the detected object (the plant) at a specified distance from the vehicle.
+- **Detection Count(Tespit edilme sayisi):** Non-functional.
 
-## Home:
+## Home (Anasayfa):
 
 - **Tasks-Status Information (Loadcell data, Connection status):** Some are undefined.
 - **Mavlink:** Specifies which port will be used for the MAVLink connection with Pixhawk.
