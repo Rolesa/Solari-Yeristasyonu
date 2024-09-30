@@ -5,6 +5,10 @@
 I would like to thank [mdsaglam](https://github.com/mdsaglam) for their support and contributions during the development process.
 ---
 
+**Preview:**
+<p align="center"> <img src="https://github.com/user-attachments/assets/3d059b77-6320-4b67-9bee-02251177583f" alt="Preview Image 1" width="300"/> <img src="https://github.com/user-attachments/assets/8feb4f3b-732f-4380-8961-7cc2ba6848d7" alt="Preview Image 2" width="300"/> </p>
+
+
 **WARNING:** Due to optimization issues, it is recommended to use V1.0 in Windows light mode. It is anticipated that this issue will be resolved in future versions.
 
 The **SOLARI** ground station works together with the Raspberry Pi, STM32, and Pixhawk present in the TIKA vehicle. The Raspberry Pi and SOLARI ground station must be on the same Wi-Fi network, and their IP addresses need to be adjusted accordingly. Valid tabs in the control station: **Camera**, **Waypoint Saving**, **Home**, and others are not in use.
