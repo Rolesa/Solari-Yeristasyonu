@@ -32,7 +32,13 @@ The **SOLARI** ground station works together with the Raspberry Pi, STM32, and P
 - **Start-HOLD-MANUAL-FORCE_ARM-DISARM Buttons:** Used to switch the vehicle between AUTO-HOLD-MANUAL modes and to arm and disarm.
 
 ---
+## Anaconda Kütüphanelerini Kurma
 
+Anaconda kütüphanelerini kurmak için aşağıdaki komutu kullanabilirsiniz:
+
+```bash
+conda env create -f environment.yml
+```
 # 💫 About Me:
 🔭 I’m currently working on control automation software development.<br>
 💬 Ask me about Pixhawk, Python, PyQt, and embedded software.
