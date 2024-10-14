@@ -32,8 +32,7 @@ def update(frame):
         plt.axis('equal')
 
 
-# Burada belirli bir kare sayısı belirtiyoruz (örneğin, 100 kare)
-anim = FuncAnimation(fig, update, frames=100, interval=1000)  # Güncellemeyi 1 saniyede bir yapar
+anim = FuncAnimation(fig, update, frames=100, interval=1000)
 plt.xlabel('Boylam')
 plt.ylabel('Enlem')
 plt.title('Araç Yolu Koordinat Sistemi Üzerinde')

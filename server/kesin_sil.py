@@ -6,27 +6,22 @@ def get_gps_loc(master, prev_lat=None, prev_lon=None):
     while True:
         msg = None
 
-        # Kuyruğu boşalt ve son gelen mesajı al
         while True:
             temp = master.recv_match(type='GLOBAL_POSITION_INT', blocking=False)
             if temp is None:
                 break
             msg = temp
 
-        # Eğer mesaj yoksa, yeni bir mesaj bekle
         if msg is None:
             msg = master.recv_match(type='GLOBAL_POSITION_INT', blocking=True)
 
         if msg:
-            # En güncel konum verilerini al
             latitude = msg.lat
             longitude = msg.lon
 
-            # Eğer veri öncekiyle aynıysa devam et ve yeni veri bekle
             if latitude == prev_lat and longitude == prev_lon:
                 continue
             else:
-                # Yeni veriyi döndür
                 return latitude, longitude
 
 
@@ -47,8 +42,8 @@ def force_arm_vehicle(master):
         master.target_component,
         mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,
         0,
-        1,  # Arm
-        21196,  # Force arm
+        1,
+        21196,
         0, 0, 0, 0, 0
     )
     print("Vehicle is force-armed")
@@ -64,14 +59,13 @@ def set_throttle(master, channel_id, pwm=1500):
         print("Channel does not exist.")
         return
 
-    # Mavlink 2 supports up to 18 channels:
     # https://mavlink.io/en/messages/common.html#RC_CHANNELS_OVERRIDE
     rc_channel_values = [65535 for _ in range(18)]
     rc_channel_values[channel_id - 1] = pwm
     master.mav.rc_channels_override_send(
-        master.target_system,  # target_system
-        master.target_component,  # target_component
-        *rc_channel_values)  # RC channel list, in microseconds.
+        master.target_system,
+        master.target_component,
+        *rc_channel_values)
 
 
 def disarm_vehicle(master):
@@ -102,15 +96,14 @@ def cmd_set_home(master, home_location, altitude):
 def auto_mode_start(master, mode_name):
     mode_id = master.mode_mapping()[mode_name]
     base_mode = mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED
-    # Mod değişikliği komutunu gönder
     master.mav.command_long_send(
-        master.target_system,  # Hedef sistem ID'si
-        master.target_component,  # Hedef bileşen ID'si
-        mavutil.mavlink.MAV_CMD_DO_SET_MODE,  # Komut: Mod ayarla
-        0,  # Confirmation
-        base_mode,  # Param 1: Temel mod
-        mode_id,  # Param 2: Özel mod
-        0, 0, 0, 0, 0  # Diğer parametreler genellikle 0'dır
+        master.target_system,
+        master.target_component,
+        mavutil.mavlink.MAV_CMD_DO_SET_MODE,
+        0,
+        base_mode,
+        mode_id,
+        0, 0, 0, 0, 0
     )
 
 
@@ -138,20 +131,16 @@ def get_mode(master):
     last_mode = None
 
     while True:
-        # HEARTBEAT mesajını al
         msg = master.recv_match(type='HEARTBEAT', blocking=True)
 
         if not msg:
             continue
 
-        # Modu al
         mode = mavutil.mode_string_v10(msg)
 
-        # Eğer mod "0x00000000" ise bu durumu es geç
         if mode == "Mode(0x00000000)":
             continue
 
-        # Mod değişikliği olup olmadığını kontrol et
         if mode != last_mode:
             last_mode = mode
             return last_mode

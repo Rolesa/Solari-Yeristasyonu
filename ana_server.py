@@ -12,7 +12,7 @@ class Server_solari:
         self.client_thread = None
         self.conn = None
         self.addr = None
-        self.stop_event = threading.Event()  # Event to signal the thread to stop
+        self.stop_event = threading.Event()
 
     def start(self):
         # Named Pipe oluştur
@@ -28,13 +28,11 @@ class Server_solari:
             print("[INFO] Waiting for pipe connection...")
             win32pipe.ConnectNamedPipe(self.pipe, None)
 
-            # TCP sunucusunu başlat
             self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server_socket.bind(('192.168.1.187', self.port))
             self.server_socket.listen(1)
             print(f"[INFO] Server listening on localhost:{self.port}")
 
-            # İstemci işleme iş parçacığını başlat
             self.client_thread = threading.Thread(target=self.handle_client)
             self.client_thread.start()
 
@@ -45,25 +43,21 @@ class Server_solari:
     def handle_client(self):
         while not self.stop_event.is_set():
             try:
-                # TCP bağlantısını kabul et
                 self.conn, self.addr = self.server_socket.accept()
                 print(f"[INFO] New connection from {self.addr}")
 
                 while not self.stop_event.is_set():
-                    # TCP üzerinden veri al
                     data = self.conn.recv(1024)
                     if not data:
                         print("[INFO] Client disconnected.")
                         break
 
-                    # Veriyi ayrıştır
                     try:
                         if data is not None:
                             data_str = data.decode('utf-8').strip()
                             loadcell, temp = self.parse_data(data_str)
                             formatted_message = f"{loadcell},{temp}"
 
-                            # Veriyi Named Pipe'a yaz
                             win32file.WriteFile(self.pipe, formatted_message.encode('utf-8'))
                     except Exception as e:
                         print(f"[ERROR] Data parsing or writing failed: {e}")
@@ -77,7 +71,6 @@ class Server_solari:
                     self.conn.close()
                     print("[INFO] Connection closed.")
 
-        # Cleanup when the loop exits
         print("[INFO] Closing pipe and server socket.")
         if self.pipe:
             try:

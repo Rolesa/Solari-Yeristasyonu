@@ -254,7 +254,6 @@ class MainWindow(QMainWindow):
             self.thread_stop_resume.start()
 
     def engel_tespit(self, var):
-        # Yeni bir thread başlatın
         self.thread_engel = EngelTespitThread(var, self.mavlink_server, self.shared_data)
         self.thread_engel.finished.connect(self.engel_capa_kaldir)
         self.thread_engel.start()
@@ -293,9 +292,9 @@ class MainWindow(QMainWindow):
                 param1 = 0
 
                 if seq == 0:
-                    current = 1  # İlk waypoint'i current olarak ayarla
+                    current = 1
                 elif seq == len(self.waypoints) - 1:
-                    param1 = 0  # Son waypoint'te param1'i sıfırla
+                    param1 = 0
 
                 p = mavutil.mavlink.MAVLink_mission_item_int_message(
                     self.mavlink_server.target_system,
@@ -784,7 +783,7 @@ class ServerThread(QThread):
         self.server.startServer()
 
 
-class CurrentStatus(QThread):  # değisti test gunu degismemis hali chatgpt de var
+class CurrentStatus(QThread):  # değisti
     waypoint_changed = Signal(int)
     mode_changed = Signal(str)
     stop_thread = Signal()
@@ -818,7 +817,6 @@ class CurrentStatus(QThread):  # değisti test gunu degismemis hali chatgpt de v
 
         master = self.mavlink_server
 
-        # Waypoint ve Mode için gerekli mesaj frekanslarını ayarla
         self.request_message_interval(master, "MISSION_CURRENT", 10)
 
         last_seq = None
@@ -827,7 +825,6 @@ class CurrentStatus(QThread):  # değisti test gunu degismemis hali chatgpt de v
 
         while self.running:
             try:
-                # MISSION_CURRENT ve HEARTBEAT mesajlarını sırayla al
                 msg = master.recv_match(type=['MISSION_CURRENT', 'HEARTBEAT'], blocking=True, timeout=0.1)
 
                 if not msg:
@@ -850,7 +847,7 @@ class CurrentStatus(QThread):  # değisti test gunu degismemis hali chatgpt de v
 
             except Exception as e:
                 print(f"Veri alımı sırasında hata: {e}")
-                time.sleep(1)  # Hata durumunda kısa bir bekleme
+                time.sleep(1)
 
     def stop(self):
         self.running = False
@@ -873,24 +870,22 @@ class MavlinkThread(QThread):
             try:
                 if self.mavlink_server is None:
                     self.mavlink_server = mavutil.mavlink_connection(self.connection_text, baud=self.baudrate)
-                    # Wait for a heartbeat
                     self.mavlink_server.wait_heartbeat()
-                    # Emit the signal to notify that the heartbeat is received
                     self.heartbeat_received.emit()
             except Exception as e:
                 print(f"mavlink server error {e}")
 
 
 class PipeListener(QObject):
-    loadcell_data = Signal(str)  # Loadcell verileri için sinyal
-    sensor_data = Signal(str)  # Temp ve Humid verileri için sinyal
-    pipe_name = r'\\.\pipe\shared_pipe'  # Tek bir pipe adresi
+    loadcell_data = Signal(str)
+    sensor_data = Signal(str)
+    pipe_name = r'\\.\pipe\shared_pipe'
 
     def __init__(self, shared_data):
         super().__init__()
         self.pipe_handle = None
         self.is_listening = False
-        self.pipe_loadcell_data = shared_data  # Shared data'yı al
+        self.pipe_loadcell_data = shared_data
 
         # QTimer ile döngü oluşturalım
         self.timer = QTimer(self)
@@ -913,11 +908,11 @@ class PipeListener(QObject):
                 None
             )
             print(f"Named pipe '{self.pipe_name}' bulundu. Pipe'dan okuma yapılıyor...")
-            self.timer.start(50)  # Her 50 ms'de bir read_pipe fonksiyonunu tetikler
+            self.timer.start(50)
 
         except win32file.error as e:
             print(f"Named pipe '{self.pipe_name}' hatası: {e}. 1 saniye sonra tekrar deneniyor...")
-            self.timer.start(1000)  # Hata durumunda 1 saniye bekler
+            self.timer.start(1000)
 
     @Slot()
     def restart_listening(self):
@@ -952,8 +947,6 @@ class PipeListener(QObject):
             if len(parts) == 2:
                 loadcell = parts[0].strip()
                 temp = parts[1].strip()
-
-                # Veriyi loadcell_ilet koşuluna göre sinyallere yay
                 self.loadcell_data.emit(loadcell)
                 self.sensor_data.emit(f"{temp}")  # degiscek sadece temp gitcek
             else:
